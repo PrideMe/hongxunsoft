@@ -1,0 +1,15 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appIDs": [
+                    "NF49TLBFRF.com.hongxunsoft.meeting"
+                ],
+                "paths": [
+                    "/meeting/*"
+                ]
+            }
+        ]
+    }
+}
