@@ -1,8 +1,978 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Palapala</title></head>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meeting-一起学 | 懂日语，更懂你 - 官方网站</title>
+    <meta name="description" content="meeting-一起学是专为日语学习者打造的在线教学与约课预约平台。提供1对1名师约课、词汇趣味闯关、双语小说电子书阅读等核心学习功能，带你零基础轻松搞定日语口语与语法！">
+    <meta name="keywords" content="meeting-一起学,日语学习,日语网课,日语约课,词汇闯关,日语电子书,齐鲁制躁">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF7E5F;
+            --primary-gradient: linear-gradient(135deg, #FF7E5F 0%, #FEB47B 100%);
+            --secondary: #2F80ED;
+            --secondary-gradient: linear-gradient(135deg, #2F80ED 0%, #56CCF2 100%);
+            --accent: #2ECC71;
+            --dark: #1E272E;
+            --light: #F9F6F0;
+            --white: #FFFFFF;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 126, 95, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 15px;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: var(--primary-gradient);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.3);
+            opacity: 1 !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            position: relative;
+            background: radial-gradient(circle at top right, rgba(254, 180, 123, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #1E272E 0%, #4A545E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #57606F;
+            margin-bottom: 40px;
+            max-width: 540px;
+        }
+
+        .download-btns {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(255, 126, 95, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 126, 95, 0.35);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--dark);
+            color: var(--dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--dark);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .app-badge-info {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+        }
+
+        .badge-item h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .badge-item p {
+            font-size: 13px;
+            color: #747D8C;
+            margin: 0;
+        }
+
+        /* Phone Mockup Frame */
+        .mockup-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            background: #000;
+            border: 12px solid #2d3436;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Screen Flow Image or styled screen inside the phone */
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            background-image: url('flowchart.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: #747D8C;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: var(--white);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border-color: rgba(255, 126, 95, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+            background: var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .icon-1 { color: #FF7E5F; background: rgba(255, 126, 95, 0.1); }
+        .icon-2 { color: #2F80ED; background: rgba(47, 128, 237, 0.1); }
+        .icon-3 { color: #2ECC71; background: rgba(46, 204, 113, 0.1); }
+        .icon-4 { color: #F39C12; background: rgba(243, 156, 18, 0.1); }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #747D8C;
+            font-size: 14px;
+        }
+
+        /* Interactive Booking Widget Section */
+        .booking-widget-section {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .booking-content h2 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .booking-content p {
+            color: #57606F;
+            margin-bottom: 30px;
+        }
+
+        .booking-steps {
+            list-style: none;
+        }
+
+        .booking-steps li {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .step-text p {
+            font-size: 13px;
+            color: #747D8C;
+            margin: 0;
+        }
+
+        /* Styled Booking Simulator Card */
+        .booking-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .booking-card-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .booking-card-header span {
+            font-size: 12px;
+            color: var(--primary);
+            background: rgba(255, 126, 95, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .week-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .day-btn {
+            background: var(--light);
+            border: none;
+            border-radius: 12px;
+            padding: 10px 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .day-btn span {
+            display: block;
+        }
+
+        .day-btn .week {
+            font-size: 11px;
+            color: #747D8C;
+            margin-bottom: 4px;
+        }
+
+        .day-btn .num {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .day-btn.active {
+            background: var(--primary-gradient);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(255, 126, 95, 0.2);
+        }
+
+        .day-btn.active .week {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .slot-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .slot-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 16px;
+            background: var(--light);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+
+        .slot-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .slot-info p {
+            font-size: 11px;
+            color: #747D8C;
+            margin: 0;
+        }
+
+        .book-btn {
+            background: var(--secondary-gradient);
+            color: var(--white);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(47, 128, 237, 0.2);
+            transition: var(--transition);
+        }
+
+        .book-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(47, 128, 237, 0.3);
+        }
+
+        .book-btn.booked {
+            background: #DFE4EA;
+            color: #A4B0BE;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* Success Dialog */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 16px 28px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* FAQ / Appeal Verification Info (Qilu Zhizao Partnership Info) */
+        .partnership {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .info-card {
+            background: var(--light);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .info-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: #57606F;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #A4B0BE;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 40px;
+        }
+
+        .footer-brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 15px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #A4B0BE;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .copyright a {
+            color: #A4B0BE;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 992px) {
+            .hero-grid, .booking-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            .hero-content p {
+                margin: 0 auto 40px;
+            }
+            .download-btns {
+                justify-content: center;
+            }
+            .app-badge-info {
+                justify-content: center;
+                border-left: none;
+                border-top: 3px solid var(--primary);
+                padding-left: 0;
+                padding-top: 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
 <body>
-<p>正在打开 App...</p>
-<script>window.location.href = "alipaymeeting://";</script>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="logo.png" alt="meeting-一起学">
+                    <span>meeting-一起学</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#features">功能特性</a></li>
+                    <li><a href="#booking">名师约课</a></li>
+                    <li><a href="#developer">关于开发团队</a></li>
+                    <li><a href="#" class="nav-cta">下载 App</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>轻松约课，快乐交流<br>开启 <span>meeting-一起学</span></h1>
+                    <p>专为日语初学者打造的互动式教学与课程预定工具。在这里，你可以一键约课、参加趣味词汇闯关，还可以阅读海量中日双语小说，让语言学习变得跟聊天一样自然有趣！</p>
+                    <div class="download-btns">
+                        <a href="#" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,22C14.32,22.05 13.89,21.24 12.37,21.24C10.84,21.24 10.37,22 9.09,22.05C7.79,22.1 6.8,20.77 5.96,19.57C4.26,17.12 2.96,12.58 4.7,9.58C5.57,8.08 7.11,7.13 8.78,7.1C10.05,7.08 11.25,7.95 12.03,7.95C12.8,7.95 14.26,6.9 15.78,7.06C16.42,7.09 18.22,7.32 19.41,9.06C19.32,9.11 17.12,10.4 17.14,13C17.16,16.14 19.82,17.2 19.85,17.22C19.83,17.27 19.41,18.5 18.71,19.5M15.97,4.86C16.63,4.07 17.07,2.97 16.95,1.87C16,1.9 14.9,2.47 14.24,3.24C13.67,3.9 13.18,5 13.33,6.08C14.38,6.16 15.4,5.56 15.97,4.86Z"/></svg>
+                            App Store 下载
+                        </a>
+                        <a href="#booking" class="btn btn-outline">立即在线约课</a>
+                    </div>
+                    <div class="app-badge-info">
+                        <div class="badge-item">
+                            <h3>100+</h3>
+                            <p>认证日语名师</p>
+                        </div>
+                        <div class="badge-item">
+                            <h3>1.2 万+</h3>
+                            <p>在线活跃学员</p>
+                        </div>
+                        <div class="badge-item">
+                            <h3>99.6%</h3>
+                            <p>课后好评率</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mockup-wrapper">
+                    <div class="phone-mockup">
+                        <div class="phone-screen"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>全方位日语互动学习体验</h2>
+                <p>打破枯燥的传统死记硬背，将科学的教研体系与便捷的工具预约融合，打造一体化闭环式学习方案。</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-1">📅</div>
+                    <h3>名师课程在线约</h3>
+                    <p>查看教师在线状态，自由选定时间，提供 1v1 或精品小班直播授课。手机点一下，即刻锁定专属学习席位。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-2">✏️</div>
+                    <h3>智能词汇语法闯关</h3>
+                    <p>系统化整理各类考级（N5-N1）核心高频词汇。支持即时智能批改与解析，配有错题集和答题卡记录，让您对弱项一目了然。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-3">📖</div>
+                    <h3>双语经典随心阅读</h3>
+                    <p>内置高拟真 EPUB 双语电子书阅读器。支持屏幕取词、下划线高亮标记、读书想法批注，翻页手势仿真，阅读更舒适。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-4">👥</div>
+                    <h3>赫兹语音社交交流</h3>
+                    <p>提供多麦位趣味日语口语聊天派对舱，支持连麦朗读、配音秀以及匿名声音挑战，在愉悦交流中克服开口难。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Booking Simulator -->
+    <section id="booking" class="booking-widget-section">
+        <div class="container">
+            <div class="booking-grid">
+                <div class="booking-content">
+                    <h2>零距离体验<br>快捷名师约课预约系统</h2>
+                    <p>我们提供最便捷的课程时间占位预订系统。不需要繁琐的手续，只需在日历卡上点选心仪日期与时间段，三步即可预约顶尖日语外教或中教老师。</p>
+                    <ul class="booking-steps">
+                        <li>
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <h4>选定预约日期</h4>
+                                <p>在日历卡片中切换选择需要预约上课的最近日期。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <h4>选择匹配课时</h4>
+                                <p>浏览不同课时的讲课主题、授课时间及主讲教师。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <h4>确认预约锁定</h4>
+                                <p>点击“预约”直接抢位，成功后即可在手机客户端参加直播课程。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <!-- Booking Card Simulator -->
+                    <div class="booking-card">
+                        <div class="booking-card-header">
+                            <h3>日语约课・预定面板</h3>
+                            <span>剩余额度: 5课时</span>
+                        </div>
+                        
+                        <!-- Calendar Days -->
+                        <div class="week-days">
+                            <div class="day-btn" onclick="switchDay(this, 15)">
+                                <span class="week">周一</span>
+                                <span class="num">15</span>
+                            </div>
+                            <div class="day-btn active" onclick="switchDay(this, 16)">
+                                <span class="week">周二</span>
+                                <span class="num">16</span>
+                            </div>
+                            <div class="day-btn" onclick="switchDay(this, 17)">
+                                <span class="week">周三</span>
+                                <span class="num">17</span>
+                            </div>
+                            <div class="day-btn" onclick="switchDay(this, 18)">
+                                <span class="week">周四</span>
+                                <span class="num">18</span>
+                            </div>
+                            <div class="day-btn" onclick="switchDay(this, 19)">
+                                <span class="week">周五</span>
+                                <span class="num">19</span>
+                            </div>
+                            <div class="day-btn" onclick="switchDay(this, 20)">
+                                <span class="week">周六</span>
+                                <span class="num">20</span>
+                            </div>
+                            <div class="day-btn" onclick="switchDay(this, 21)">
+                                <span class="week">周日</span>
+                                <span class="num">21</span>
+                            </div>
+                        </div>
+
+                        <!-- Class Slots -->
+                        <div class="slot-list" id="slot-container">
+                            <div class="slot-item">
+                                <div class="slot-info">
+                                    <h4>日语基础口语精讲课</h4>
+                                    <p>时间: 10:00 - 11:00 &nbsp;|&nbsp; 讲师: 田中老师 &nbsp;|&nbsp; 类别: 1v1专属</p>
+                                </div>
+                                <button class="book-btn" onclick="bookClass(this, '日语基础口语精讲课')">预约</button>
+                            </div>
+                            <div class="slot-item">
+                                <div class="slot-info">
+                                    <h4>JTEST考试高分语法突破</h4>
+                                    <p>时间: 14:00 - 15:30 &nbsp;|&nbsp; 讲师: 山田老师 &nbsp;|&nbsp; 类别: 精品大课</p>
+                                </div>
+                                <button class="book-btn" onclick="bookClass(this, 'JTEST考试高分语法突破')">预约</button>
+                            </div>
+                            <div class="slot-item">
+                                <div class="slot-info">
+                                    <h4>日本商务礼仪及高阶敬语</h4>
+                                    <p>时间: 19:00 - 20:00 &nbsp;|&nbsp; 讲师: 铃木老师 &nbsp;|&nbsp; 类别: 专人口语</p>
+                                </div>
+                                <button class="book-btn" onclick="bookClass(this, '日本商务礼仪及高阶敬语')">预约</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer & Compliance Info Section -->
+    <section id="developer" class="partnership">
+        <div class="container">
+            <div class="info-card">
+                <h3>关于「齐鲁制躁」团队说明</h3>
+                <p><strong>关于本应用官网：</strong> 本页面为「meeting-一起学」iOS移动应用官方指定宣传网站，符合微信开放平台及商户平台接入要求。微信商户平台中填写的官网链接应与本页面保持一致。</p>
+                <p><strong>关于开发主体：</strong> <strong>『meeting-一起学』</strong> iOS客户端及相关在线教学预定服务由 <strong>『齐鲁制躁』</strong> 软件开发团队负责研发、发布及技术支持。我们致力于为用户提供最优质的语言工具与移动互联体验。</p>
+                <p>若对软件服务或支付体验有任何疑问，请通过底部联系邮箱与我们沟通，我们将在1个工作日内进行跟进处理。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="meeting-一起学">
+                    <h3>meeting-一起学</h3>
+                    <p>由齐鲁制躁团队自主研发的日语口语教学、精品课程预定及词汇训练综合工具客户端。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>核心功能</h4>
+                    <ul>
+                        <li><a href="#features">词汇闯关</a></li>
+                        <li><a href="#booking">名师约课</a></li>
+                        <li><a href="#features">双语阅读</a></li>
+                        <li><a href="#features">语音交友</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>支持与条款</h4>
+                    <ul>
+                        <li><a href="#">服务协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#developer">关于开发主体</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 齐鲁制躁 团队. 保留所有权利。</p>
+                <p>技术支持联络: support@hongxunsoft.com | <a href="https://github.com" target="_blank">GitHub Pages 托管</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="success-toast">
+        <div class="toast-icon">✓</div>
+        <div id="toast-message">预约成功！请在 App 内参加课程。</div>
+    </div>
+
+    <script>
+        function switchDay(element, dayNum) {
+            // Remove active from all days
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Add active
+            element.classList.add('active');
+            
+            // Randomly update slots slightly to look responsive and active
+            const teachers = ["田中老师", "山田老师", "铃木老师", "佐藤老师", "高桥老师"];
+            const classes = ["初级日语速成", "中级商务口语", "日语N2考前突击", "日语听力集训", "动漫原声配音口语课"];
+            
+            const randomTeacher1 = teachers[Math.floor(Math.random() * teachers.length)];
+            const randomTeacher2 = teachers[Math.floor(Math.random() * teachers.length)];
+            const randomClass1 = classes[Math.floor(Math.random() * classes.length)];
+            const randomClass2 = classes[Math.floor(Math.random() * classes.length)];
+
+            const container = document.getElementById('slot-container');
+            container.innerHTML = `
+                <div class="slot-item">
+                    <div class="slot-info">
+                        <h4>${randomClass1}</h4>
+                        <p>时间: 10:00 - 11:30 &nbsp;|&nbsp; 讲师: ${randomTeacher1} &nbsp;|&nbsp; 类别: 1v1专属</p>
+                    </div>
+                    <button class="book-btn" onclick="bookClass(this, '${randomClass1}')">预约</button>
+                </div>
+                <div class="slot-item">
+                    <div class="slot-info">
+                        <h4>${randomClass2}</h4>
+                        <p>时间: 15:00 - 16:30 &nbsp;|&nbsp; 讲师: ${randomTeacher2} &nbsp;|&nbsp; 类别: 精品大课</p>
+                    </div>
+                    <button class="book-btn" onclick="bookClass(this, '${randomClass2}')">预约</button>
+                </div>
+            `;
+        }
+
+        function bookClass(btn, className) {
+            if (btn.classList.contains('booked')) return;
+            
+            // Change button state
+            btn.innerText = "已预约";
+            btn.classList.add('booked');
+            btn.disabled = true;
+            
+            // Show toast
+            const toast = document.getElementById('success-toast');
+            const message = document.getElementById('toast-message');
+            message.innerText = `预约成功！已为您锁定了《${className}》的课位！`;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
